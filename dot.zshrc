@@ -30,10 +30,19 @@ export HISTFILE="$HOME/.zsh_history"
 export HISTSIZE=10000
 export SAVEHIST=$HISTSIZE
 
-# improved less option
-export LESS="--tabs=4 --no-init --LONG-PROMPT --ignore-case --quit-if-one-screen --RAW-CONTROL-CHARS"
-
 #export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=36;01:cd=33;01:su=31;40;07:sg=36;40;07:tw=32;40;07:ow=33;40;07:'
+
+# color formatting for man pages
+export LESS_TERMCAP_mb=$'\e[1;31m'     # begin bold
+export LESS_TERMCAP_md=$'\e[1;36m'     # begin blink
+export LESS_TERMCAP_so=$'\e[1;33;44m'  # begin reverse video
+export LESS_TERMCAP_us=$'\e[1;37m'     # begin underline
+export LESS_TERMCAP_me=$'\e[0m'        # reset bold/blink
+export LESS_TERMCAP_se=$'\e[0m'        # reset reverse video
+export LESS_TERMCAP_ue=$'\e[0m'        # reset underline
+export GROFF_NO_SGR=1                  # for konsole and gnome-terminal
+
+export MANPAGER='less -s -M -R +Gg'
 
 # Directory coloring
 if [[ $OSTYPE = (darwin|freebsd)* ]]; then
@@ -129,7 +138,6 @@ zplug "seebi/dircolors-solarized", ignore:"*", as:plugin
 zplug "pinelibg/dircolors-solarized-zsh"
 
 zplug "plugins/common-aliase",     from:oh-my-zsh
-zplug "plugins/colored-man-pages", from:oh-my-zsh
 zplug "plugins/command-not-found", from:oh-my-zsh
 zplug "plugins/copydir",           from:oh-my-zsh
 zplug "plugins/copyfile",          from:oh-my-zsh
@@ -173,6 +181,8 @@ zplug "plugins/gpg-agent",         from:oh-my-zsh, if:"(( $+commands[gpg-agent] 
 zplug "plugins/systemd",           from:oh-my-zsh, if:"(( $+commands[systemctl] ))"
 zplug "plugins/docker",            from:oh-my-zsh, if:"(( $+commands[docker] ))"
 zplug "plugins/docker-compose",    from:oh-my-zsh, if:"(( $+commands[docker-compose] ))"
+zplug "plugins/terraform",         from:oh-my-zsh, if:"(( $+commands[terraform] ))"
+zplug "plugins/vagrant",           from:oh-my-zsh, if:"(( $+commands[vagrant] ))"
 
 #zplug "djui/alias-tips"
 zplug "hlissner/zsh-autopair", defer:2
@@ -670,7 +680,6 @@ zstyle ':completion:*' select-prompt '%SScrolling active: current selection at %
 zstyle ':completion:*:descriptions' format '%U%F{yellow}%d%f%u'
 #zstyle ':completion:*:*:git:*' script ~/.git-completion.sh
 
-
 zstyle ':completion:*' rehash true
 zstyle ':completion:*' verbose yes
 zstyle ':completion:*:descriptions' format '%B%d%b'
@@ -691,4 +700,4 @@ zstyle ':completion:*:default' list-colors "${(s.:.)LS_COLORS}"
 
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
-# vim: ft=zsh
+# vim: ft=zsh sw=4 sts=4 et
