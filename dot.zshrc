@@ -426,7 +426,7 @@ if zplug check "zsh-users/zsh-syntax-highlighting"; then
     ZSH_HIGHLIGHT_STYLES[path_pathseparator]='fg=grey,underline'
     ZSH_HIGHLIGHT_STYLES[path_prefix]='fg=white'
     ZSH_HIGHLIGHT_STYLES[path_approx]='fg=white'
-    ZSH_HIGHLIGHT_STYLES[globbing]='fg=green'
+    ZSH_HIGHLIGHT_STYLES[globbing]='none'
     ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=green'
     ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=blue'
     ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=blue'
